@@ -22,12 +22,20 @@ def make_intersections(data :list):
         sets.append(list(s))
     return sets
 
+def sum_up(l):
+    dist = l[0]
+    if dist == 0:
+        return 0
+    return dist + sum_up(l[:dist])
 
 if __name__ == '__main__':
     d = get_data()
     winning_numbers = make_intersections(d)
     total = 0
+    print(winning_numbers)
     for game in winning_numbers:
         score = 2**(len(game)-1)
         total += int(score)
     print(total)
+    num_cards_per_game = list(map(len, winning_numbers))
+    print(num_cards_per_game)
