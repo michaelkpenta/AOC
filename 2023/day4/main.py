@@ -56,4 +56,5 @@ if __name__ == '__main__':
     print(total)
     num_cards_per_game = list(map(len, winning_numbers))
     print(num_cards_per_game)
+    print(count_cards(num_cards_per_game))
 
