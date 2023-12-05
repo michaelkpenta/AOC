@@ -22,11 +22,28 @@ def make_intersections(data :list):
         sets.append(list(s))
     return sets
 
-def sum_up(l):
-    dist = l[0]
+
+def process_card(current_card: int, card_wins: list, memo: dict):
+    if current_card in memo:
+        return memo[current_card]
+    dist = card_wins[current_card]
     if dist == 0:
-        return 0
-    return dist + sum_up(l[:dist])
+        memo[current_card] = 1
+        return 1
+    total = 1
+    for next_card in range(current_card+1, min(current_card + dist+1, len(card_wins))):
+        total += process_card(next_card, card_wins, memo)
+    memo[current_card] = total
+    return total
+
+
+def count_cards(card_wins: list):
+    memo = {}
+    total = 0
+    for i in range(len(card_wins)):
+        total += process_card(i, card_wins,memo)
+    return total
+
 
 if __name__ == '__main__':
     d = get_data()
@@ -39,3 +56,4 @@ if __name__ == '__main__':
     print(total)
     num_cards_per_game = list(map(len, winning_numbers))
     print(num_cards_per_game)
+
