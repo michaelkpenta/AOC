@@ -37,6 +37,12 @@ def check_in_range(translator_in, translator_name, data_dict):
 
 if __name__ == '__main__':
     d = get_data()
-    print(check_in_range(1, 'seed-to-soil map:', d))
+    locations = []
+    for seed in d["seeds"]:
+        last_translation = seed
+        for translator in maps:
+            last_translation = check_in_range(last_translation, translator, d)
+        locations.append(last_translation)
+    print(min(locations))
 
 
