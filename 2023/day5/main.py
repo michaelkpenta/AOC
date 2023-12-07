@@ -35,7 +35,7 @@ def check_in_range(translator_in, translator_name, data_dict):
             return dest_result
     return translator_in #not found - returns its own value
 
-if __name__ == '__main__':
+def part1():
     d = get_data()
     locations = []
     for seed in d["seeds"]:
@@ -46,3 +46,7 @@ if __name__ == '__main__':
     print(min(locations))
 
 
+if __name__ == '__main__':
+   #part1()
+   d = get_data()
+   print(d)
